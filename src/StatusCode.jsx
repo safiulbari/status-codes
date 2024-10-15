@@ -37,9 +37,9 @@ function StatusCode() {
   return (
     <>
       <div className="flex flex-col items-center gap-6 p-4 bg-gray-100 min-h-screen font-suse">
-        <div className="flex flex-row gap-2 justify-between">
+        <div className="flex flex-row gap-2 justify-between items-baseline">
 
-          <div className="w-[400px] max-w-lg">
+          <div className=" max-w-lg">
             <input
               type="text"
               placeholder="Search by status code..."
@@ -50,7 +50,7 @@ function StatusCode() {
           </div>
 
 
-          <div className="w-[300px] max-w-[300px]">
+          <div className=" max-w-lg">
             <select
               value={selectedCategory}
               onChange={(e) => setSelectedCategory(e.target.value)}
