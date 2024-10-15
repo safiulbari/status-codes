@@ -3,8 +3,8 @@ import { useEffect, useState } from "react";
 function StatusCode() {
   const [statusCodes, setStatusCodes] = useState([]);
   const [filteredCodes, setFilteredCodes] = useState([]);
-  const [search, setSearch] = useState(""); // For search by status code
-  const [selectedCategory, setSelectedCategory] = useState("All"); // For dropdown filter
+  const [search, setSearch] = useState(""); 
+  const [selectedCategory, setSelectedCategory] = useState("All"); 
 
   useEffect(() => {
     async function fetchData() {
@@ -13,23 +13,20 @@ function StatusCode() {
       );
       const data = await res.json();
       setStatusCodes(data.data);
-      setFilteredCodes(data.data); // Set initially to all data
+      setFilteredCodes(data.data); 
     }
     fetchData();
   }, []);
 
-  // Update filtered data based on search and category filter
   useEffect(() => {
     let filtered = Object.values(statusCodes);
 
-    // Filter by search input (status code)
     if (search) {
       filtered = filtered.filter((item) =>
         item.statusCode.toString().includes(search)
       );
     }
 
-    // Filter by category if selected
     if (selectedCategory !== "All") {
       filtered = filtered.filter((item) => item.category === selectedCategory);
     }
@@ -41,7 +38,7 @@ function StatusCode() {
     <>
       <div className="flex flex-col items-center gap-6 p-4 bg-gray-100 min-h-screen font-suse">
         <div className="flex flex-row gap-2 justify-between">
-          {/* Search Input */}
+
           <div className="w-[400px] max-w-lg">
             <input
               type="text"
@@ -52,7 +49,7 @@ function StatusCode() {
             />
           </div>
 
-          {/* Dropdown Filter */}
+
           <div className="w-[300px] max-w-[300px]">
             <select
               value={selectedCategory}
@@ -77,7 +74,7 @@ function StatusCode() {
                 key={index}
                 className="max-w-sm w-full bg-white shadow-lg rounded-lg overflow-hidden hover:shadow-2xl transition-shadow duration-300"
               >
-                {/* Category */}
+
                 <div
                   className={`px-4 py-2 ${getCategoryColor(
                     item.category
@@ -86,7 +83,7 @@ function StatusCode() {
                   {item.category}
                 </div>
 
-                {/* Body */}
+
                 <div className="p-4">
                   <h2 className="text-2xl font-semibold text-gray-800 mb-2">
                     Status Code: {item.statusCode}
