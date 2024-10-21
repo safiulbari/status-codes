@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 
 function StatusCode() {
   const [statusCodes, setStatusCodes] = useState([]);
@@ -6,6 +6,8 @@ function StatusCode() {
   const [search, setSearch] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [darkMode, setDarkMode] = useState(false);
+  const inputElement = useRef();
+
 
   useEffect(() => {
     async function fetchData() {
@@ -17,6 +19,8 @@ function StatusCode() {
       setFilteredCodes(data.data);
     }
     fetchData();
+    inputElement.current.focus();
+
   }, []);
 
   useEffect(() => {
@@ -54,6 +58,7 @@ function StatusCode() {
             placeholder="Search by status code..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
+            ref={inputElement}
             className="w-full px-4 py-2 border border-gray-300 rounded-md dark:bg-gray-700 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-400"
 
           />
